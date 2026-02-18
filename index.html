@@ -678,6 +678,19 @@
     .stat-cluster { height: 320px; }
     .stat-card:nth-child(2) { display: none; }
   }
+
+  /* ─── FRAMER EMBED FIX ─── */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+    overflow-x: hidden !important;
+  }
+  iframe {
+    display: block !important;
+    border: none !important;
+  }
+
 </style>
 </head>
 <body>
