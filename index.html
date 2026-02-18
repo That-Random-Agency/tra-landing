@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>That Random Agency — AI Visibility for B2B Firms</title>
+<meta name="description" content="73% of B2B professional services firms have no AI visibility strategy. That Random Agency diagnoses and fixes exactly that — with proprietary tools and done-for-you execution.">
+<meta property="og:title" content="Your Clients Are Asking AI Who to Hire. It's Not You.">
+<meta property="og:description" content="That Random Agency helps B2B professional services firms get found in ChatGPT, Perplexity, and Gemini. Proprietary diagnosis. Done-for-you execution.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+
+    /* ─── TOKENS ─── */
+  :root {
+    --black:     #0a0a0a;
+    --offwhite:  #f2ede6;
+    --cream:     #e8e0d4;
+    --red:        #f03015;
+    --acid:      #f03015;
+    --rust:      #c84b2f;
+    --wgray:     #1e1a16;
+    --mgray:     #2e2a26;
+    --dgray:     #4a4540;
+    --lgray:     #9a948e;
+    --border:    rgba(242,237,230,0.08);
+    --shadow:    0 24px 60px rgba(0,0,0,0.5);
+  }
+
+  /* ─── RESET ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── UTILITIES ─── */
+  .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--acid);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+
+  /* ─── FADE-UP ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+  .nav.scrolled { padding: 0.9rem 4rem; }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.12em;
+  }
+  .nav-logo span { color: var(--acid); }
+
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+
+  .nav-link-item {
+    font-size: 0.78rem;
+    color: var(--lgray);
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-link-item:hover { color: var(--offwhite); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-acid { background: var(--red); color: var(--offwhite); }
+  .btn-acid:hover { background: #d42810; }
+
+  .btn-dark { background: var(--offwhite); color: var(--red); }
+  .btn-dark:hover { background: var(--cream); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--offwhite);
+    border: 1px solid rgba(242,237,230,0.2);
+  }
+  .btn-outline:hover { border-color: var(--acid); color: var(--acid); }
+
+  .btn-arrow::after { content: '→'; transition: transform 0.2s; }
+  .btn-arrow:hover::after { transform: translateX(4px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 10rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 75% 40%, rgba(240,48,21,0.055) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(240,48,21,0.025) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Grain texture overlay */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 6.5vw, 6.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-headline-italic {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 1;
+    color: var(--acid);
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--lgray);
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-body strong { color: var(--offwhite); font-weight: 500; }
+
+  .hero-cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+
+  .hero-micro {
+    font-size: 0.72rem;
+    color: var(--dgray);
+    letter-spacing: 0.05em;
+  }
+
+  /* Hero right — stat cluster */
+  .hero-right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .stat-cluster {
+    position: relative;
+    width: 360px;
+    height: 400px;
+  }
+
+  .stat-card {
+    position: absolute;
+    background: var(--wgray);
+    border: 1px solid rgba(242,237,230,0.09);
+    padding: 1.75rem 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-card:nth-child(1) {
+    top: 0; left: 0; width: 210px;
+    animation: floatA 7s ease-in-out infinite;
+  }
+  .stat-card:nth-child(2) {
+    top: 85px; right: 0; width: 195px;
+    animation: floatB 7s ease-in-out 2s infinite;
+  }
+  .stat-card:nth-child(3) {
+    bottom: 30px; left: 25px; width: 230px;
+    animation: floatC 7s ease-in-out 4s infinite;
+  }
+
+  @keyframes floatA { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-10px) rotate(0deg)} }
+  @keyframes floatB { 0%,100%{transform:translateY(0) rotate(1deg)} 50%{transform:translateY(-8px) rotate(0deg)} }
+  @keyframes floatC { 0%,100%{transform:translateY(0) rotate(-0.5deg)} 50%{transform:translateY(-12px) rotate(0.5deg)} }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.75rem;
+    line-height: 1;
+    color: var(--acid);
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.76rem;
+    color: var(--lgray);
+    line-height: 1.45;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--wgray);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+  .ticker-track {
+    display: inline-flex;
+    animation: ticker 22s linear infinite;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+
+  .ticker-item {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--offwhite);
+    padding: 0 2.5rem;
+  }
+  .ticker-sep { opacity: 1; color: var(--acid); }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── SECTIONS SHARED ─── */
+  .section { padding: 7rem 4rem; }
+  .section-alt { background: var(--wgray); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .section-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.9rem);
+    line-height: 1.2;
+    margin: 0.5rem 0 1.25rem;
+  }
+  .section-headline em { color: var(--acid); font-style: italic; }
+
+  .display-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin: 0.5rem 0 1.25rem;
+  }
+  .display-headline .acc { color: var(--acid); }
+
+  .body-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--lgray);
+    margin-bottom: 1.25rem;
+  }
+  .body-text strong { color: var(--offwhite); font-weight: 500; }
+  .body-text:last-of-type { margin-bottom: 0; }
+
+  /* ─── PROBLEM SECTION ─── */
+  .pain-list { display: flex; flex-direction: column; gap: 1px; }
+
+  .pain-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: rgba(10,10,10,0.45);
+    border-left: 2px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .pain-item:hover {
+    border-left-color: var(--acid);
+    background: rgba(10,10,10,0.7);
+  }
+
+  .pain-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .pain-title {
+    font-weight: 500;
+    color: var(--offwhite);
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  .pain-desc { font-size: 0.86rem; color: var(--lgray); line-height: 1.6; }
+
+  /* ─── DIFFERENTIATOR ─── */
+  .diff-center { text-align: center; }
+  .diff-center .eyebrow { justify-content: center; }
+  .diff-center .eyebrow::before { display: none; }
+  .diff-center .section-headline,
+  .diff-center .display-headline,
+  .diff-center .body-text { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3.5rem;
+  }
+
+  .card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+  }
+  .card:hover { background: var(--wgray); }
+
+  .card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: rgba(240,48,21,0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .card-body { font-size: 0.86rem; color: var(--lgray); line-height: 1.7; }
+
+  /* ─── TOOL SECTION ─── */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+  .platform-pill {
+    background: rgba(10,10,10,0.6);
+    border: 1px solid var(--border);
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+    color: var(--lgray);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .platform-pill:hover { border-color: var(--acid); color: var(--offwhite); }
+  .platform-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acid); flex-shrink: 0; }
+
+  /* Scorecard widget */
+  .scorecard {
+    background: var(--black);
+    border: 1px solid rgba(242,237,230,0.1);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .scorecard::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -20%;
+    width: 60%; height: 60%;
+    background: radial-gradient(ellipse, rgba(240,48,21,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .sc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sc-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lgray); }
+  .sc-overall { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--acid); }
+
+  .sc-row { margin-bottom: 1rem; }
+  .sc-row:last-of-type { margin-bottom: 0; }
+  .sc-row-head { display: flex; justify-content: space-between; margin-bottom: 5px; }
+  .sc-platform { font-size: 0.78rem; color: var(--lgray); }
+  .sc-val { font-family: 'Bebas Neue', sans-serif; font-size: 0.88rem; color: var(--offwhite); }
+  .sc-bar-bg { height: 3px; background: rgba(242,237,230,0.07); position: relative; }
+  .sc-bar-fill {
+    position: absolute; top: 0; left: 0; height: 100%;
+    background: var(--acid);
+    width: 0;
+    transition: width 1.6s cubic-bezier(0.4,0,0.2,1);
+  }
+  .sc-note {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.74rem;
+    color: var(--lgray);
+    line-height: 1.55;
+  }
+  .sc-note .hi { color: var(--acid); }
+
+  /* ─── WHO WE SERVE ─── */
+  .who-intro { position: sticky; top: 6rem; }
+
+  .icp-stack { display: flex; flex-direction: column; gap: 1px; }
+
+  .icp-card {
+    background: var(--wgray);
+    padding: 1.75rem 2.25rem;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .icp-card:hover { border-left-color: var(--acid); background: rgba(42,37,32,0.9); }
+  .icp-card.no-fit { border-left-color: var(--rust); background: rgba(200,75,47,0.06); }
+
+  .icp-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+  .icp-card.no-fit .icp-title { color: var(--lgray); }
+
+  .icp-desc { font-size: 0.85rem; color: var(--lgray); line-height: 1.6; margin-bottom: 0.75rem; }
+
+  .icp-tag {
+    display: inline-block;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--acid);
+    border: 1px solid rgba(240,48,21,0.25);
+    padding: 0.18rem 0.55rem;
+  }
+
+  /* ─── PROCESS ─── */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: calc(12.5% - 0.5px);
+    right: calc(12.5% - 0.5px);
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(240,48,21,0.25), rgba(240,48,21,0.25), transparent);
+  }
+
+  .step-box { position: relative; z-index: 1; }
+
+  .step-num {
+    width: 4rem; height: 4rem;
+    border: 1px solid rgba(240,48,21,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--acid);
+    background: var(--wgray);
+    margin-bottom: 1.5rem;
+  }
+  .step-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.65rem;
+    line-height: 1.3;
+  }
+  .step-body { font-size: 0.82rem; color: var(--lgray); line-height: 1.7; }
+
+  /* ─── ABOUT ─── */
+  .credentials { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+  .cred {
+    font-size: 0.86rem;
+    color: var(--lgray);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .cred::before { content: '✦'; position: absolute; left: 0; color: var(--acid); font-size: 0.55rem; top: 0.2rem; }
+
+  .quote-box {
+    background: var(--wgray);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    position: relative;
+  }
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: 1rem; left: 2rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 6rem;
+    color: rgba(240,48,21,0.1);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.55;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .quote-text span { color: var(--acid); }
+
+  .quote-attr { font-size: 0.78rem; color: var(--lgray); letter-spacing: 0.06em; }
+  .quote-attr strong { color: var(--offwhite); display: block; font-family: 'DM Serif Display', serif; font-style: normal; font-size: 1rem; font-weight: 400; margin-bottom: 0.2rem; letter-spacing: 0; }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    background: var(--red);
+    padding: 8rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'APPLY';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28vw;
+    color: rgba(0,0,0,0.08);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -52%);
+    pointer-events: none;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .cta-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .cta-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    line-height: 0.92;
+    color: var(--offwhite);
+    margin-bottom: 1.75rem;
+    position: relative;
+  }
+  .cta-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    position: relative;
+  }
+  .cta-micro {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.06em;
+    position: relative;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.12em; }
+  .footer-logo span { color: var(--acid); }
+  .footer-copy { font-size: 0.72rem; color: var(--dgray); letter-spacing: 0.04em; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.72rem; color: var(--dgray); transition: color 0.2s; }
+  .footer-links a:hover { color: var(--acid); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .nav { padding: 1.1rem 1.5rem; }
+    .nav-right .nav-link-item { display: none; }
+    .section { padding: 5rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 8rem 1.5rem 4rem; min-height: auto; gap: 3rem; }
+    .hero-right { justify-content: flex-start; }
+    .stat-cluster { width: 100%; max-width: 360px; height: 360px; }
+    .two-col { grid-template-columns: 1fr; gap: 3rem; }
+    .who-intro { position: static; }
+    .card-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .cta-section { padding: 5rem 1.5rem; }
+    .footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-headline { font-size: clamp(2.8rem, 12vw, 4rem); }
+    .hero-headline-italic { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+    .process-steps { grid-template-columns: 1fr; }
+    .platform-grid { grid-template-columns: 1fr; }
+    .stat-cluster { height: 320px; }
+    .stat-card:nth-child(2) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<header class="nav" id="mainNav">
+  <a href="#" class="nav-logo">That <span>Random</span> Agency</a>
+  <div class="nav-right">
+    <a href="#problem" class="nav-link-item">The Problem</a>
+    <a href="#process" class="nav-link-item">How It Works</a>
+    <a href="#about" class="nav-link-item">About</a>
+    <a href="#apply" class="btn btn-acid btn-arrow">Apply Now</a>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="eyebrow reveal">AI Visibility for B2B Professional Services</div>
+    <h1 class="hero-headline reveal reveal-d1">
+      Your clients<br>are asking AI<br>who to hire.
+    </h1>
+    <span class="hero-headline-italic reveal reveal-d2">It's not you.</span>
+    <p class="hero-body reveal reveal-d3">
+      <strong>73% of professional services firms have zero AI visibility strategy.</strong> While you're focused on Google rankings, your ideal clients are getting recommendations from ChatGPT, Perplexity, and Gemini — and your competitors are showing up. You're not.
+    </p>
+    <div class="hero-cta reveal reveal-d4">
+      <a href="#apply" class="btn btn-acid btn-arrow">Apply to Work With Us</a>
+      <span class="hero-micro">Limited client spots available</span>
+    </div>
+  </div>
+
+  <div class="hero-right reveal reveal-d2">
+    <div class="stat-cluster">
+      <div class="stat-card">
+        <div class="stat-num">73%</div>
+        <div class="stat-label">of B2B firms have no AI visibility strategy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">65%</div>
+        <div class="stat-label">of buyers now use AI to research service providers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">higher consideration when AI recommends you by name</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TICKER ─── -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">AI VISIBILITY</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">GENERATIVE ENGINE OPTIMIZATION</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">CHATGPT · PERPLEXITY · GEMINI · CLAUDE</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">B2B PROFESSIONAL SERVICES</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">THAT RANDOM AGENCY · DETROIT</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">AI VISIBILITY</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">GENERATIVE ENGINE OPTIMIZATION</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">CHATGPT · PERPLEXITY · GEMINI · CLAUDE</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">B2B PROFESSIONAL SERVICES</span>
+    <span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">THAT RANDOM AGENCY · DETROIT</span>
+    <span class="ticker-item ticker-sep">✦</span>
+  </div>
+</div>
+
+<!-- ─── PROBLEM ─── -->
+<section class="section section-alt" id="problem">
+  <div class="two-col">
+    <div>
+      <div class="eyebrow reveal">The Problem</div>
+      <h2 class="section-headline reveal">
+        The way clients find professional services firms has <em>fundamentally changed.</em>
+      </h2>
+      <p class="body-text reveal">
+        Your potential clients — the marketing director at a mid-size law firm, the CMO at a financial advisory group — aren't just Googling anymore. <strong>They're asking AI.</strong> And what AI says about you is now shaping buying decisions before a human ever visits your website.
+      </p>
+      <p class="body-text reveal">
+        The problem? Most firms have no idea what AI is saying about them. And most agencies offering "AI solutions" hand you a 40-page report full of jargon and leave you more confused than when you started.
+      </p>
+    </div>
+    <div class="pain-list reveal">
+      <div class="pain-item">
+        <span class="pain-icon">👻</span>
+        <div>
+          <div class="pain-title">You're invisible where it matters most</div>
+          <div class="pain-desc">When a prospective client asks ChatGPT who the best firms in your category are — your name isn't in the answer.</div>
+        </div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">📊</span>
+        <div>
+          <div class="pain-title">You've tried the AI tools. They gave you a report. Now what?</div>
+          <div class="pain-desc">Most AI visibility tools dump data on you and disappear. No strategy, no execution, no one to actually fix the problem.</div>
+        </div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">🏃</span>
+        <div>
+          <div class="pain-title">Your competitors are figuring this out faster</div>
+          <div class="pain-desc">AI recommendations compound over time. Every month you wait, they pull further ahead in the one channel you can't buy your way into overnight.</div>
+        </div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">🔁</span>
+        <div>
+          <div class="pain-title">Your SEO agency has no idea what GEO is</div>
+          <div class="pain-desc">Traditional search optimization and generative engine optimization are fundamentally different disciplines. Most agencies are still pretending they're the same thing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DIFFERENTIATOR ─── -->
+<section class="section diff-center">
+  <div class="eyebrow reveal">Why That Random Agency</div>
+  <h2 class="display-headline reveal">
+    We don't hand you a report.<br>We <span class="acc">fix the problem.</span>
+  </h2>
+  <p class="body-text reveal">
+    Most agencies slapped "AI" on their website in 2024. We built proprietary infrastructure to diagnose and solve your AI visibility gap — then we do the actual work of fixing it. <strong>That's the difference.</strong>
+  </p>
+  <div class="card-grid reveal">
+    <div class="card">
+      <div class="card-num">01</div>
+      <div class="card-title">Proprietary Diagnostic, Not Guesswork</div>
+      <div class="card-body">We run your brand through Ahoy Lighthouse — our proprietary AI visibility intelligence tool — to analyze how 10+ AI platforms actually talk about you, your competitors, and your category. No assumptions. Real data.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">02</div>
+      <div class="card-title">Strategy That Actually Makes Sense</div>
+      <div class="card-body">We translate the data into a clear, prioritized action plan in plain English. No jargon. No 40-page reports that collect dust. You'll know exactly what's broken and exactly what we're doing to fix it.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">03</div>
+      <div class="card-title">Done-For-You Execution</div>
+      <div class="card-body">Strategy without execution is just a presentation. Our team implements the GEO content strategy, authority-building, and citation optimization that actually moves your AI visibility score — month over month.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TOOL SECTION ─── -->
+<section class="section section-alt">
+  <div class="two-col">
+    <div>
+      <div class="eyebrow reveal">Our Proprietary Edge</div>
+      <h2 class="display-headline reveal">Built on intelligence your competitors<br><span class="acc">can't access.</span></h2>
+      <p class="body-text reveal">
+        Ahoy Lighthouse is our proprietary AI visibility intelligence platform. Before we write a single word of strategy, we run a deep analysis of how <strong>10+ major AI platforms</strong> describe your firm — visibility scores, sentiment analysis, citation mapping, competitor benchmarking, and GEO content scoring.
+      </p>
+      <p class="body-text reveal">
+        We built this because the existing tools give you data without direction. <strong>Lighthouse gives us both</strong> — and that's what powers every engagement we run.
+      </p>
+      <div class="platform-grid reveal">
+        <div class="platform-pill"><span class="platform-dot"></span>ChatGPT</div>
+        <div class="platform-pill"><span class="platform-dot"></span>Perplexity</div>
+        <div class="platform-pill"><span class="platform-dot"></span>Gemini</div>
+        <div class="platform-pill"><span class="platform-dot"></span>Claude</div>
+        <div class="platform-pill"><span class="platform-dot"></span>DeepSeek</div>
+        <div class="platform-pill"><span class="platform-dot"></span>Llama + 5 more</div>
+      </div>
+    </div>
+    <div class="scorecard reveal" id="scorecard">
+      <div class="sc-header">
+        <span class="sc-label">AI Visibility Scorecard — Sample</span>
+        <span class="sc-overall">Overall: 24%</span>
+      </div>
+      <div class="sc-row"><div class="sc-row-head"><span class="sc-platform">ChatGPT</span><span class="sc-val">31%</span></div><div class="sc-bar-bg"><div class="sc-bar-fill" data-w="31"></div></div></div>
+      <div class="sc-row"><div class="sc-row-head"><span class="sc-platform">Perplexity</span><span class="sc-val">18%</span></div><div class="sc-bar-bg"><div class="sc-bar-fill" data-w="18"></div></div></div>
+      <div class="sc-row"><div class="sc-row-head"><span class="sc-platform">Gemini</span><span class="sc-val">42%</span></div><div class="sc-bar-bg"><div class="sc-bar-fill" data-w="42"></div></div></div>
+      <div class="sc-row"><div class="sc-row-head"><span class="sc-platform">Claude</span><span class="sc-val">12%</span></div><div class="sc-bar-bg"><div class="sc-bar-fill" data-w="12"></div></div></div>
+      <div class="sc-row"><div class="sc-row-head"><span class="sc-platform">DeepSeek</span><span class="sc-val">9%</span></div><div class="sc-bar-bg"><div class="sc-bar-fill" data-w="9"></div></div></div>
+      <div class="sc-note">⚠ Competitor A is cited 4× more frequently. 2 citation sources are driving 80% of their AI mentions. <span class="hi">We know exactly how to fix this.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHO WE SERVE ─── -->
+<section class="section">
+  <div class="two-col" style="align-items: start;">
+    <div class="who-intro">
+      <div class="eyebrow reveal">Who We Work With</div>
+      <h2 class="display-headline reveal">We're not for everyone.<br>We're for you <span class="acc">if —</span></h2>
+      <p class="body-text reveal">We work with mid-market B2B professional services firms that have a real marketing budget, a serious growth mandate, and the patience to build something that compounds over time.</p>
+    </div>
+    <div class="icp-stack reveal">
+      <div class="icp-card">
+        <div class="icp-title">Law Firms & Legal Services</div>
+        <div class="icp-desc">When a general counsel or corporate client asks ChatGPT for outside counsel recommendations, your firm needs to be in the answer. We build the AI authority that gets you there.</div>
+        <span class="icp-tag">Legal</span>
+      </div>
+      <div class="icp-card">
+        <div class="icp-title">Financial Services & Wealth Management</div>
+        <div class="icp-desc">High-net-worth clients and CFOs are increasingly turning to AI for advisor recommendations. Your AI visibility directly impacts new AUM and client acquisition.</div>
+        <span class="icp-tag">Finance</span>
+      </div>
+      <div class="icp-card">
+        <div class="icp-title">Management & Strategy Consulting</div>
+        <div class="icp-desc">Procurement teams at enterprise companies are using AI to build shortlists. If you're not in the AI's recommended consultancies, you don't make the shortlist.</div>
+        <span class="icp-tag">Consulting</span>
+      </div>
+      <div class="icp-card">
+        <div class="icp-title">Accounting & Professional Advisory</div>
+        <div class="icp-desc">Your referral network is still valuable — but it's now competing with AI-driven discovery. We help you dominate both channels, not just one.</div>
+        <span class="icp-tag">Advisory</span>
+      </div>
+      <div class="icp-card no-fit">
+        <div class="icp-title">Not the right fit:</div>
+        <div class="icp-desc">Startups without marketing budgets. Firms looking for overnight results. Anyone who wants a report and not a real engagement. We're selective because your results depend on it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section class="section section-alt" id="process">
+  <div class="eyebrow reveal">How It Works</div>
+  <h2 class="display-headline reveal">From invisible<br>to <span class="acc">undeniable.</span></h2>
+  <div class="process-steps">
+    <div class="step-box reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Apply & Discovery Call</div>
+      <div class="step-body">We review your application and schedule a call to understand your firm, your competitive landscape, and your growth goals. We only take on clients we know we can move the needle for.</div>
+    </div>
+    <div class="step-box reveal reveal-d1">
+      <div class="step-num">02</div>
+      <div class="step-title">Ahoy Lighthouse Audit</div>
+      <div class="step-body">We run a comprehensive AI visibility analysis across 10+ platforms — visibility scoring, sentiment, citation mapping, GEO scoring, and competitor benchmarking. You'll see exactly where you stand.</div>
+    </div>
+    <div class="step-box reveal reveal-d2">
+      <div class="step-num">03</div>
+      <div class="step-title">Strategic Roadmap</div>
+      <div class="step-body">We deliver a clear, prioritized action plan. No jargon. No filler. You'll know exactly what we're doing, why we're doing it, and what results to expect over the next 90 days.</div>
+    </div>
+    <div class="step-box reveal reveal-d3">
+      <div class="step-num">04</div>
+      <div class="step-title">Done-For-You Execution</div>
+      <div class="step-body">We execute the GEO content strategy, authority building, and citation optimization on your behalf — and report on your AI visibility scores monthly so you can watch the numbers move.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="section" id="about">
+  <div class="two-col">
+    <div>
+      <div class="eyebrow reveal">About That Random Agency</div>
+      <h2 class="display-headline reveal">Detroit-built.<br><span class="acc">Forward-thinking.</span><br>Actually different.</h2>
+      <p class="body-text reveal">
+        That Random Agency is a Detroit-based digital marketing agency that was doing AI before it was a buzzword. We specialize in helping mid-market B2B professional services firms win in the channels that are shaping the future of business development — including the one most of your competitors haven't figured out yet.
+      </p>
+      <p class="body-text reveal">
+        <strong>We built Ahoy Lighthouse ourselves</strong> because we couldn't find a tool that gave us the depth of insight our clients deserved. That proprietary infrastructure is what sets our AI Visibility engagements apart from every other agency claiming to do "GEO."
+      </p>
+      <div class="credentials reveal">
+        <div class="cred">Detroit-based agency, nationally serving B2B professional services firms</div>
+        <div class="cred">Proprietary AI visibility intelligence platform (Ahoy Lighthouse)</div>
+        <div class="cred">Specialists in social, search, and AI visibility — not generalists pretending to be experts</div>
+        <div class="cred">Selective client roster — we only take on clients we can genuinely move the needle for</div>
+      </div>
+    </div>
+    <div class="quote-box reveal">
+      <div class="quote-text">
+        "Most agencies gave us reports. <span>That Random Agency gave us a strategy we could actually act on</span> — and then they acted on it with us."
+      </div>
+      <div class="quote-attr">
+        <strong>Early Client, B2B Professional Services</strong>
+        Detroit Metro Area
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section" id="apply">
+  <div class="cta-eyebrow">Limited Spots Available</div>
+  <h2 class="cta-headline">Ready to stop<br>being invisible?</h2>
+  <p class="cta-sub">Apply to work with That Random Agency. We'll review your application, run a preliminary Ahoy Lighthouse scan, and reach out within 48 hours if it's a fit.</p>
+  <a href="#" class="btn btn-dark btn-arrow">Apply to Work With Us</a>
+  <div class="cta-micro">We review every application personally. No automated responses.</div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-logo">That <span>Random</span> Agency</div>
+  <div class="footer-copy">© 2026 That Random Agency · Detroit, MI</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="mailto:hello@thatrandomagency.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // ─── SCROLL REVEAL ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ─── NAV SCROLL STATE ───
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ─── SCORECARD BAR ANIMATION ───
+  const scorecard = document.getElementById('scorecard');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.sc-bar-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, i * 120 + 300);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  if (scorecard) barObserver.observe(scorecard);
+
+  // ─── SMOOTH ANCHOR SCROLL ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
